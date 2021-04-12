@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://alonpeleg:alonpeleg@cluster0.ckwbw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
