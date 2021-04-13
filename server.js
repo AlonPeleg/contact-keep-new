@@ -1,10 +1,21 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
 const app = express();
 
+// Import Routes
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const contactsRoute = require("./routes/contacts");
+
+dotenv.config();
+
 // Connect to DB
 connectDB();
+
+// Init Middleware
+app.use(express.json({ extended: false }));
 
 // Define routes
 app.get("/", (req, res) => {
@@ -12,9 +23,9 @@ app.get("/", (req, res) => {
 });
 
 // Define Routes
-app.use("/api/users", require("./routes/users"));
-app.use("/api/contacts", require("./routes/contacts"));
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/users", userRoute);
+app.use("/api/contacts", contactsRoute);
+app.use("/api/auth", authRoute);
 
 const PORT = process.env.PORT || 5000;
 
